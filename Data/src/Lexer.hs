@@ -1,10 +1,8 @@
 module Lexer
-  ( tokenise,
+  ( lexer,
     Token (..),
   )
 where
-
-import Ayayan qualified as A
 
 data Token
   = StartBranch
@@ -15,6 +13,9 @@ data Token
   | EndLet
   | InLet
   deriving (Eq)
+
+lexer :: String -> [Token]
+lexer = tokenise
 
 tokenise :: String -> [Token]
 tokenise = fmap matchToken . toPairs . filterWhitespace

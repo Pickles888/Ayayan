@@ -1,3 +1,3 @@
-module Ayayan where
+module Lang where
 
 data AyaWord = Noun String | Verb String | Descriptor String
