@@ -1,8 +1,10 @@
 module Lexer
-  ( lexer,
+  ( tokenise,
     Token (..),
   )
 where
+
+import qualified Utils
 
 data Token
   = StartBranch
@@ -14,11 +16,8 @@ data Token
   | InLet
   deriving (Eq)
 
-lexer :: String -> [Token]
-lexer = tokenise
-
 tokenise :: String -> [Token]
-tokenise = fmap matchToken . toPairs . filterWhitespace
+tokenise = fmap matchToken . Utils.toPairs . filterWhitespace
 
 matchToken :: (Char, Char) -> Token
 matchToken ab = case ab of
@@ -30,10 +29,6 @@ matchToken ab = case ab of
     '|' -> EndBranch
     '>' -> InLet
     x -> Item x
-
-toPairs :: String -> [(Char, Char)]
-toPairs [] = []
-toPairs (x : xs) = (x, head xs) : toPairs xs
 
 filterWhitespace :: String -> String
 filterWhitespace = filter (not . (`elem` " \t\n\r\f"))

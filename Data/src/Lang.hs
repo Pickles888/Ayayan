@@ -1,3 +1,21 @@
-module Lang where
+module Lang
+  ( AyaWord (..),
+    WordType (..),
+    DictEntry (..),
+  )
+where
 
-data AyaWord = Noun String | Verb String | Descriptor String
+data AyaWord
+  = Word WordType
+  | Dictionary DictEntry
+
+data WordType
+  = Noun String
+  | Verb String
+  | Descriptor String
+
+data DictEntry = DictEntry
+  { ayayan :: String,
+    english :: String,
+    wordtype :: WordType
+  }

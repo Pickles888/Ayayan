@@ -25,10 +25,12 @@ source-repository head
 
 library
   exposed-modules:
+      Ayaya
       Lang
       Lexer
       Lib
       Parser
+      Utils
   other-modules:
       Paths_Data
   autogen-modules:
